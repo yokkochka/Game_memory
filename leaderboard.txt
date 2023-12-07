@@ -5,3 +5,4 @@ test: 10
 Fred: 4
 Loooser: 0
 lololoshka: 0
+asasaas: 0

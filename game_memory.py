@@ -95,7 +95,7 @@ class Game:
         # Параметр -1 для зацикливания фоновой фузыки
         pygame.mixer.music.play(-1)
         # Решулируем громкость фоновой музыки
-        pygame.mixer.music.set_volume(0.2)
+        pygame.mixer.music.set_volume(0)
 
         self.WIN = pygame.display.set_mode((self.WIN_WIDTH,self.WIN_HEIGHT))  
         pygame.display.set_caption('Memory')
@@ -145,6 +145,7 @@ class Game:
 
                 elif event.type == MOUSEMOTION:
                     pos_mouse_x, pos_mouse_y = event.pos
+                    
 
                 elif event.type == MOUSEBUTTONUP:
                     pos_mouse_x, pos_mouse_y = event.pos
@@ -182,10 +183,10 @@ class Game:
                         card_color_1, card_shape_1 = self.shape_and_color(board, click_on_the_first_card[0], click_on_the_first_card[1])
                         card_color_2, card_shape_2 = self.shape_and_color(board, card_pos_mouse_x, card_pos_mouse_y)
 
-                        # Если значения не совпадают
+                        # Если значения совпадают
                         if card_shape_1 == card_shape_2 and card_color_1 == card_color_2:
                             self.SCORE += 1
-
+                        # Если значения не совпадают
                         if card_shape_1 != card_shape_2 or card_color_1 != card_color_2:
                             self.STEP -= 1
 
@@ -287,7 +288,7 @@ class Game:
     def shape_and_color(self, board, i, j):
         # В board обращаемся к нужной ячейке, в ней кортеж (shape, color)  
         return board[i][j][0], board[i][j][1]
-
+    
     #  Функция отрисовки иконок
     def draw_icon(self, shape, color, i, j):
         left, top = self.left_top_coord(i, j) 
@@ -313,8 +314,7 @@ class Game:
             pygame.draw.polygon(self.WIN, color, [[left+20, top+5], [left+5, top+35], [left+35, top+35]])
             pygame.draw.polygon(self.WIN, self.ROSE, [[left+20, top+5], [left+12, top+20], [left+28, top+20]])
             pygame.draw.polygon(self.WIN, self.BGCOLOR, [[left+20, top+10], [left+15, top+25], [left+25, top+25]])
-            pygame.draw.line(self.WIN, color, (left + 5, top + 35), (left + 35, top + 35), 3)
-
+            
         elif shape == self.HEART:
             pygame.draw.polygon(self.WIN, color, [[left+20, top+35], [left+5, top+20], [left+5, top+15], [left+10, top+10], [left+15, top+10], [left+20, top+16], [left+25, top+10], [left+30, top+10], [left+35, top+15], [left+35, top+20]])
             pygame.draw.polygon(self.WIN, self.BGCOLOR, [[left+20, top+35], [left+10, top+20], [left+30, top+20]])
@@ -424,10 +424,10 @@ class Game:
         scores.sort(key=lambda x: x[1], reverse=True)
 
         # Сохранение только первых 8 результатов
-        top_10_scores = scores[:8]
+        top_8_scores = scores[:8]
 
         with open("leaderboard.txt", "w") as file:
-            for score in top_10_scores:
+            for score in top_8_scores:
                 file.write(f"{score[0]}: {score[1]}\n")
 
     # Функция считывания данных из файла
@@ -542,7 +542,7 @@ class Game:
         self.input_active = True
         while self.input_active:
             for event in pygame.event.get():
-                if event.type == QUIT:
+                if event.type == QUIT or (event.type == KEYUP and event.key == K_ESCAPE):
                     pygame.quit()
                     sys.exit()
 
@@ -572,6 +572,7 @@ class Game:
         pygame.draw.rect(self.WIN, color, self.input_box, 2)
 
         self.create_mes('Введите свое имя', self.ROSE, 220, 150, 'comicsans', 25)
+
         text = self.input_font.render(self.input_text, True, (255, 255, 255))
         width = max(200, text.get_width()+10)
         input_box_rect = pygame.Rect(self.WIN_WIDTH // 2.75, 250, width, 40)

@@ -1,0 +1,1 @@
+if interrupt_button_rect.collidepoint(event.pos)
