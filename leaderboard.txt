@@ -1,0 +1,7 @@
+Jon: 20
+Lisa: 16
+test: 10
+9999: 5
+Fred: 4
+Loooser: 0
+lololoshka: 0
