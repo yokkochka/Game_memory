@@ -1,8 +1,8 @@
 Jon: 20
 Lisa: 16
 test: 10
+ulyana: 6
 9999: 5
 Fred: 4
+jhjhjkh: 2
 Loooser: 0
-lololoshka: 0
-asasaas: 0
