@@ -46,10 +46,15 @@ The game presents a grid of cards face down. Players take turns flipping two car
 
 ## Screenshots
 
-### Main Game Screen
-![Game Screen](./screenshots/game_screen.png)
+### Main game screen
+![Game Screen](./materials/photo_2024-08-17_22-38-55.jpg)
+![Game Screen](./materials/photo_2024-08-17_22-38-57.jpg)
+![Game Screen](./materials/photo_2024-08-17_22-39-00.jpg)
+![Game Screen](./materials/photo_2024-08-17_22-39-02.jpg)
+![Game Screen](./materials/photo_2024-08-17_22-39-08.jpg)
+![Game Screen](./materials/photo_2024-08-17_22-39-10.jpg)
 
-## File Structure
+## File structure
 
 - `game_memory.py`: Main script file for the game.
 - `leaderboard.txt`: File to store top scores.
